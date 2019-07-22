@@ -37,7 +37,12 @@ public class LoginPageTest {
 	}
 	
 	@Test
-
+	public void totalLinks() {
+		int PageLinks=loginPage.getLinks();
+		System.out.println("Total number of Links present on the Webpage : " + PageLinks);
+		Assert.assertEquals(PageLinks, 27);
+		
+	}
 	
 	
 	

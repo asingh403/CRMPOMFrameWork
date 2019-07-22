@@ -1,5 +1,6 @@
 package com.qa.crmpro.pages;
 
+import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -18,8 +19,8 @@ public class LoginPage extends BasePage {
 	@FindBy(xpath = "//input[@class='btn btn-small']")
 	WebElement loginButton;
 	
-	@FindBy(tagName = "//a")
-	String linksList;
+	@FindBy(tagName = "a")
+	List<WebElement> list;
 	
 	// Create a constructor of this page class
 	public LoginPage(WebDriver driver) {
@@ -36,6 +37,11 @@ public class LoginPage extends BasePage {
 		emailId.sendKeys(username);
 		password.sendKeys(pwd);
 		loginButton.click();
+	}
+	public int getLinks() {
+		int count=list.size();
+		return count;
+		
 	}
 																																																													
 	
