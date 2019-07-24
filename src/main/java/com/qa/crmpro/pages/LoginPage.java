@@ -1,5 +1,6 @@
 package com.qa.crmpro.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +23,9 @@ public class LoginPage extends BasePage {
 	@FindBy(tagName = "a")
 	List<WebElement> list;
 	
+	@FindBy(xpath = "//a")
+	List<WebElement> links;
+	
 	// Create a constructor of this page class
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
@@ -42,6 +46,15 @@ public class LoginPage extends BasePage {
 		int count=list.size();
 		return count;
 		
+	}
+	
+	public ArrayList<String> getLinksText() {
+		ArrayList<String> data = new ArrayList<String>(); 
+		for (int i=0;i<links.size();i++) {
+			data.add(links.get(i).getAttribute("href"));
+			
+		}
+		return data;
 	}
 																																																													
 	

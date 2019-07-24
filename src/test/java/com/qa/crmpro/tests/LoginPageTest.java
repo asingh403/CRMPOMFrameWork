@@ -1,5 +1,6 @@
 package com.qa.crmpro.tests;
 
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -17,50 +18,47 @@ public class LoginPageTest {
 	BasePage basePage;
 	Properties prop;
 	LoginPage loginPage;
-	
-	
+
 	@BeforeMethod
 	public void setUp() throws InterruptedException {
 		basePage = new BasePage();
-		prop=basePage.init_prop();
+		prop = basePage.init_prop();
 		driver = basePage.init_driver(prop);
 		driver.get(prop.getProperty("url"));
 		loginPage = new LoginPage(driver);
 		Thread.sleep(6000);
 	}
-	@Test(priority=1)
+
+	@Test(priority = 1,enabled=false)
 	public void verifyLoginPageTitleTest() {
 		String title = loginPage.getLoginPageTitle();
-		System.out.println("login Page Title is : "+title);
+		System.out.println("login Page Title is : " + title);
 		Assert.assertEquals(title, "CRM says…");
-		
+
 	}
-	
-	@Test
+
+	@Test(priority = 2,enabled=false)
 	public void totalLinks() {
-		int PageLinks=loginPage.getLinks();
+		int PageLinks = loginPage.getLinks();
 		System.out.println("Total number of Links present on the Webpage : " + PageLinks);
 		Assert.assertEquals(PageLinks, 27);
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	@Test(priority = 3)
+
+	public void linksName() {
+		ArrayList<String> LinksText = loginPage.getLinksText();
+		System.out.println("List of Links text : " + LinksText);
+		int PageLinks = loginPage.getLinks();
+		Assert.assertEquals(PageLinks, 27);
+
+	}
+
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
