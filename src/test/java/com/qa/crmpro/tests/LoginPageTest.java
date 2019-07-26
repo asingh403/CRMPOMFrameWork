@@ -29,7 +29,7 @@ public class LoginPageTest {
 		Thread.sleep(6000);
 	}
 
-	@Test(priority = 1,enabled=false)
+	@Test(priority = 1)
 	public void verifyLoginPageTitleTest() {
 		String title = loginPage.getLoginPageTitle();
 		System.out.println("login Page Title is : " + title);
@@ -37,7 +37,7 @@ public class LoginPageTest {
 
 	}
 
-	@Test(priority = 2,enabled=false)
+	@Test(priority = 2)
 	public void totalLinks() {
 		int PageLinks = loginPage.getLinks();
 		System.out.println("Total number of Links present on the Webpage : " + PageLinks);
@@ -46,13 +46,17 @@ public class LoginPageTest {
 	}
 
 	@Test(priority = 3)
-
 	public void linksName() {
 		ArrayList<String> LinksText = loginPage.getLinksText();
 		System.out.println("List of Links text : " + LinksText);
 		int PageLinks = loginPage.getLinks();
 		Assert.assertEquals(PageLinks, 27);
 
+	}
+	
+	@Test(priority=4)
+	public void CRMLoginTest() {
+		loginPage.doLogin(prop.getProperty("username").trim(), prop.getProperty("password").trim());
 	}
 
 	@AfterMethod
