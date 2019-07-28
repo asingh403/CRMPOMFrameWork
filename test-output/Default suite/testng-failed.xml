@@ -7,7 +7,8 @@
         <methods>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="totalLinks"/>
+          <include name="CRMLoginTest"/>
+          <include name="verifyLoginPageTitleTest"/>
         </methods>
       </class> <!-- com.qa.crmpro.tests.LoginPageTest -->
     </classes>
