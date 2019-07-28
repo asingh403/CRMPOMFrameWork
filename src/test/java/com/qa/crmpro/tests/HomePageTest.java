@@ -7,6 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.qa.crmpro.pages.BasePage;
+import com.qa.crmpro.pages.HomePage;
 import com.qa.crmpro.pages.LoginPage;
 import com.qa.crmpro.util.TimeUtil;
 
@@ -16,6 +17,7 @@ public class HomePageTest {
 	BasePage basePage;
 	Properties prop;
 	LoginPage loginPage;
+	HomePage homePage;
 
 	@BeforeMethod
 	public void setUp() {
@@ -25,6 +27,8 @@ public class HomePageTest {
 		driver.get(prop.getProperty("url"));
 		loginPage = new LoginPage(driver);
 		TimeUtil.shortWait();
+		homePage = loginPage.doLogin(prop.getProperty("username"),prop.getProperty("password"));
+		
 	}
 	
 	

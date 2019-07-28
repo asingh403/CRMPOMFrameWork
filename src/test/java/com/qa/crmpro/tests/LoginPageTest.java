@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import com.qa.crmpro.pages.BasePage;
 import com.qa.crmpro.pages.LoginPage;
+import com.qa.crmpro.util.Constants;
+import com.qa.crmpro.util.TimeUtil;
 
 public class LoginPageTest {
 
@@ -20,20 +22,20 @@ public class LoginPageTest {
 	LoginPage loginPage;
 
 	@BeforeMethod
-	public void setUp() throws InterruptedException {
+	public void setUp() {
 		basePage = new BasePage();
 		prop = basePage.init_prop();
 		driver = basePage.init_driver(prop);
 		driver.get(prop.getProperty("url"));
 		loginPage = new LoginPage(driver);
-		Thread.sleep(6000);
+		TimeUtil.shortWait();
 	}
 
 	@Test(priority = 1)
 	public void verifyLoginPageTitleTest() {
 		String title = loginPage.getLoginPageTitle();
 		System.out.println("login Page Title is : " + title);
-		Assert.assertEquals(title, "CRM says…");
+		Assert.assertEquals(title, Constants.LOGIN_PAGE_TITLE);
 
 	}
 
@@ -59,6 +61,12 @@ public class LoginPageTest {
 		loginPage.doLogin(prop.getProperty("username").trim(), prop.getProperty("password").trim());
 	}
 
+	@Test(priority=5)
+	public void verifySignUpLinkTest() {
+		Assert.assertTrue(loginPage.verifySignUpLink());	
+	}
+	
+	
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();

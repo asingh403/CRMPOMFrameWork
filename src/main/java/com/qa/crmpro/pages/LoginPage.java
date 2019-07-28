@@ -14,7 +14,7 @@ public class LoginPage extends BasePage {
 	@FindBy(xpath = "//input[@name='username']")
 	WebElement emailId;
 
-	@FindBy(xpath = "//input[@name='password")
+	@FindBy(xpath = ".//input[@name = 'password']")
 	WebElement password;
 
 	@FindBy(xpath = "//input[@class='btn btn-small']")
@@ -25,6 +25,9 @@ public class LoginPage extends BasePage {
 	
 	@FindBy(xpath = "//a")
 	List<WebElement> links;
+	
+	@FindBy(linkText= "Sign Up")
+	WebElement SignUpLink;
 	
 	// Create a constructor of this page class
 	public LoginPage(WebDriver driver) {
@@ -37,10 +40,19 @@ public class LoginPage extends BasePage {
 		return driver.getTitle();
 	}
 
-	public void doLogin(String username,String pwd) {
+	/**
+	 * 
+	 * @param username : naveenautomation
+	 * @param pwd : test@123
+	 * @return Home Page object 
+	 */
+	
+	public HomePage doLogin(String username,String pwd) {
 		emailId.sendKeys(username);
 		password.sendKeys(pwd);
 		loginButton.click();
+		
+		return new HomePage(driver);
 	}
 	public int getLinks() {
 		int count=list.size();
@@ -55,6 +67,11 @@ public class LoginPage extends BasePage {
 			
 		}
 		return data;
+	}
+	
+	public boolean verifySignUpLink() {
+		return SignUpLink.isDisplayed();
+		
 	}
 																																																													
 	
