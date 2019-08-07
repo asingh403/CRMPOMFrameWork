@@ -65,5 +65,9 @@ public class BasePage {
 		}
 		return prop;
 	}
+	public void switchToFrame() {
+		driver.switchTo().frame("mainpanel");
+		
+	}
 
 }
